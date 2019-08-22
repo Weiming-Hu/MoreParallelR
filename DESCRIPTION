@@ -1,0 +1,16 @@
+Package: MoreParallelR
+Type: Package
+Title: MoreParallelR provides solutions for parallelization in R.
+Version: 0.1.0
+Author: Weiming Hu
+Maintainer: Weiming Hu <weiming.pennstate@outlook.com>
+Description: MoreParallelR aims to implement some common
+    solutions for parallelization in R.
+License: MIT + file LICENSE
+Encoding: UTF-8
+Depends:
+    parallel,
+Suggests:
+    testthat,
+LazyData: true
+RoxygenNote: 6.1.1.9000

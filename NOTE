@@ -1,0 +1,10 @@
+# This is a note for developers.
+
+# To test the package
+devtools::test()
+
+# To include functions to NAMESPACE
+devtools::document()
+
+# To build the website and docs
+pkgdown::build_site()
