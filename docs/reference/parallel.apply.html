@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>MoreParallelR::array.apply — array.apply • MoreParallelR</title>
+<title>MoreParallelR::parallel.apply — parallel.apply • MoreParallelR</title>
 
 <!-- jquery -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
@@ -30,9 +30,9 @@
 
 
 
-<meta property="og:title" content="MoreParallelR::array.apply — array.apply" />
+<meta property="og:title" content="MoreParallelR::parallel.apply — parallel.apply" />
 
-<meta property="og:description" content="MoreParallelR::array.apply provides a convenient solution
+<meta property="og:description" content="MoreParallelR::parallel.apply provides a convenient solution
 for parallelizing the apply function on array. This
 function first breaks the dimension specified by MARGIN
 to a list of smaller arrays and then call the mcapply
@@ -67,7 +67,7 @@ function to achieve the rest of the parallelization." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">MoreParallelR</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.1.1</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.1.2</span>
       </span>
     </div>
 
@@ -101,14 +101,14 @@ function to achieve the rest of the parallelization." />
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>MoreParallelR::array.apply</h1>
+    <h1>MoreParallelR::parallel.apply</h1>
     
-    <div class="hidden name"><code>array.apply.Rd</code></div>
+    <div class="hidden name"><code>parallel.apply.Rd</code></div>
     </div>
 
     <div class="ref-description">
     
-    <p>MoreParallelR::array.apply provides a convenient solution
+    <p>MoreParallelR::parallel.apply provides a convenient solution
 for parallelizing the <code>apply</code> function on array. This
 function first breaks the dimension specified by <code>MARGIN</code>
 to a list of smaller arrays and then call the <code>mcapply</code>
@@ -116,7 +116,7 @@ function to achieve the rest of the parallelization.</p>
     
     </div>
 
-    <pre class="usage"><span class='fu'>array.apply</span>(<span class='no'>X</span>, <span class='no'>MARGIN</span>, <span class='no'>cores</span>, <span class='no'>FUN</span>, <span class='no'>...</span>, <span class='kw'>verbose</span> <span class='kw'>=</span> <span class='no'>F</span>)</pre>
+    <pre class="usage"><span class='fu'>parallel.apply</span>(<span class='no'>X</span>, <span class='no'>MARGIN</span>, <span class='no'>cores</span>, <span class='no'>FUN</span>, <span class='no'>...</span>, <span class='kw'>verbose</span> <span class='kw'>=</span> <span class='no'>F</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -165,13 +165,13 @@ dimensions.</p>
 differently for a vector, a matrix, or an array. If you
 are applying the function on a matrix or an array, <code>lapply</code>
 and <code>plyr:laply</code> will coerce the high-dimensional object
-to vector; but <code>array.apply</code> will take the data <strong>AS IT IS</strong>
+to vector; but <code>parallel.apply</code> will take the data <strong>AS IT IS</strong>
 to feed the <code>FUN</code>. This might cause different results
 from this function and <code>apply</code>.</p>
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='co'># This example shows you how to run array.apply on a synthetic</span>
+    <pre class="examples"><div class='input'><span class='co'># This example shows you how to run parallel.apply on a synthetic</span>
 <span class='co'># array and the how the performance compares to a serial run.</span>
 <span class='co'>#</span>
 
@@ -203,7 +203,7 @@ from this function and <code>apply</code>.</p>
   }
 
   <span class='co'># Run the paralle code</span>
-  <span class='no'>X.new.par</span> <span class='kw'>&lt;-</span> <span class='fu'>array.apply</span>(
+  <span class='no'>X.new.par</span> <span class='kw'>&lt;-</span> <span class='fu'>parallel.apply</span>(
     <span class='no'>X</span>, <span class='no'>MARGIN</span>, <span class='kw'>cores</span> <span class='kw'>=</span> <span class='no'>cores</span>, <span class='no'>FUN</span>)
 
   <span class='co'># Run the serial code</span>

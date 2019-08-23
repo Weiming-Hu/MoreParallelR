@@ -1,6 +1,6 @@
-# This script tests the function array.apply
+# This script tests the function parallel.apply
 # This is the test file.
-context("Function array.apply")
+context("Function parallel.apply")
 
 # Define the test data set dimensions
 dims <- c(10, 20, 5, 8)
@@ -24,7 +24,7 @@ for (m in 1:4) {
     MARGIN <- combns[, i.col]
 
     # Carry out the test
-    ret <- array.apply(
+    ret <- parallel.apply(
       X, MARGIN, cores, FUN, na.rm = T)
     ret.serial <- apply(
       X, MARGIN, FUN, na.rm = T)
@@ -38,4 +38,4 @@ for (m in 1:4) {
   }
 }
 
-succeed('Tests passed for the function array.apply!')
+succeed('Tests passed for the function parallel.apply!')

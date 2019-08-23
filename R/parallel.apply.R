@@ -9,10 +9,10 @@
 #         Department of Geography and Institute for CyberScience
 #         The Pennsylvania State University
 
-#' MoreParallelR::array.apply
+#' MoreParallelR::parallel.apply
 #'
 #' @description
-#' MoreParallelR::array.apply provides a convenient solution
+#' MoreParallelR::parallel.apply provides a convenient solution
 #' for parallelizing the `apply` function on array. This
 #' function first breaks the dimension specified by `MARGIN`
 #' to a list of smaller arrays and then call the `mcapply`
@@ -39,7 +39,7 @@
 #' differently for a vector, a matrix, or an array. If you
 #' are applying the function on a matrix or an array, `lapply`
 #' and `plyr:laply` will coerce the high-dimensional object
-#' to vector; but `array.apply` will take the data **AS IT IS**
+#' to vector; but `parallel.apply` will take the data **AS IT IS**
 #' to feed the `FUN`. This might cause different results
 #' from this function and `apply`.
 #'
@@ -53,7 +53,7 @@
 #' @return An array.
 #'
 #' @examples
-#' # This example shows you how to run array.apply on a synthetic
+#' # This example shows you how to run parallel.apply on a synthetic
 #' # array and the how the performance compares to a serial run.
 #' #
 #'
@@ -85,7 +85,7 @@
 #'   }
 #'
 #'   # Run the paralle code
-#'   X.new.par <- array.apply(
+#'   X.new.par <- parallel.apply(
 #'     X, MARGIN, cores = cores, FUN)
 #'
 #'   # Run the serial code
@@ -97,7 +97,7 @@
 #'
 #' @md
 #' @export
-array.apply <- function(X, MARGIN, cores, FUN, ..., verbose = F) {
+parallel.apply <- function(X, MARGIN, cores, FUN, ..., verbose = F) {
 
   # Sanity checks
   stopifnot(is.array(X))
@@ -142,6 +142,6 @@ array.apply <- function(X, MARGIN, cores, FUN, ..., verbose = F) {
   rm(i.row, index, ret, X.list, index.loop)
   garbage <- gc(reset = T)
 
-  if (verbose) cat('Done (array.apply)!\n')
+  if (verbose) cat('Done (parallel.apply)!\n')
   return(X.new)
 }
