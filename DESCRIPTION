@@ -1,7 +1,7 @@
 Package: MoreParallelR
 Type: Package
 Title: MoreParallelR provides solutions for parallelization in R.
-Version: 0.1.0
+Version: 0.1.1
 Author: Weiming Hu
 Maintainer: Weiming Hu <weiming.pennstate@outlook.com>
 Description: MoreParallelR aims to implement some common
@@ -12,5 +12,6 @@ Depends:
     parallel,
 Suggests:
     testthat,
+    magrittr,
 LazyData: true
 RoxygenNote: 6.1.1.9000

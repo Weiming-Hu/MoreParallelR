@@ -4,12 +4,13 @@
 \alias{array.apply}
 \title{MoreParallelR::array.apply}
 \usage{
-array.apply(X, MARGIN, cores, FUN, ..., verbose = T)
+array.apply(X, MARGIN, cores, FUN, ..., verbose = F)
 }
 \arguments{
 \item{X}{An array.}
 
-\item{MARGIN}{A vector giving the subscripts which the function will be applied over.}
+\item{MARGIN}{A vector giving the subscripts which the
+function will be applied over.}
 
 \item{FUN}{The function to be applied.}
 
@@ -32,6 +33,67 @@ To see better improvement by the parallelization, it is
 preferred to have the runtime of \code{FUN} longer. In other
 words, this solution works better when you have a heavy
 workload in the function \code{FUN}.
+
+This idea was originally inspired by my advisor,
+\href{http://geoinf.psu.edu/}{Prof. Guido Cervone}, during a
+casual conversation.
+
+This function is different from
+\href{https://www.rdocumentation.org/packages/plyr/versions/1.8.4/topics/laply}{plyr::laply}
+that it returns an array with the specified \code{MARGIN} as
+dimensions.
+
+\strong{Note}: Please be aware of whether your \code{FUN} behaves
+differently for a vector, a matrix, or an array. If you
+are applying the function on a matrix or an array, \code{lapply}
+and \code{plyr:laply} will coerce the high-dimensional object
+to vector; but \code{array.apply} will take the data \strong{AS IT IS}
+to feed the \code{FUN}. This might cause different results
+from this function and \code{apply}.
+}
+\examples{
+# This example shows you how to run array.apply on a synthetic
+# array and the how the performance compares to a serial run.
+#
+
+library(profvis)
+
+profvis({
+  library(MoreParallelR)
+  library(magrittr)
+
+  # Generate synthesized data
+  dims <- c(80 , 90, 100, 15)
+  X <- dims \%>\%
+    prod() \%>\%
+    runif(min = 1, max = 10) \%>\%
+    array(dim = dims)
+
+  MARGIN <- c(2, 4)
+  cores <- 4
+  FUN <- function(v) {
+    library(magrittr)
+
+    # A costly function
+    ret <- v \%>\%
+      sin() \%>\%
+      cos() \%>\%
+      var()
+
+    return(ret)
+  }
+
+  # Run the paralle code
+  X.new.par <- array.apply(
+    X, MARGIN, cores = cores, FUN)
+
+  # Run the serial code
+  X.new.sq <- apply(X, MARGIN, FUN)
+
+  # Compare results
+  identical(X.new.par, X.new.sq)
+})
+
 }
 \author{
 Weiming Hu

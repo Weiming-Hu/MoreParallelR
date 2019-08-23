@@ -2,10 +2,8 @@
 # This is the test file.
 context("Function array.apply")
 
-verbose <- F
-
 # Define the test data set dimensions
-dims <- c(10, 20, 10, 15)
+dims <- c(10, 20, 5, 8)
 X <- array(data = runif(prod(dims)), dim = dims)
 
 # Randomly assign special values
@@ -18,34 +16,26 @@ X[sample.int(length(X), size = count)] <- Inf
 FUN <- mean
 cores <- 2
 
-# This is the first group of tests
-if (verbose) cat('test.array.apply group 1 ...\n')
-for (MARGIN in 1:length(dims)) {
+for (m in 1:4) {
+  combns <- combn(x = 1:length(dims), m = m)
 
-  # Carry out the test
-  ret <- array.apply(
-    X, MARGIN, cores, FUN, na.rm = T, verbose = F)
-  ret.serial <- apply(
-    X, MARGIN, FUN, na.rm = T, verbose = F)
+  for (i.col in 1:ncol(combns)) {
 
-  # Check results
-  stopifnot(identical(as.vector(ret.serial), as.vector(ret)))
-}
+    MARGIN <- combns[, i.col]
 
-# This is the second group of tests
-if (verbose) cat('test.array.apply group 2 ...\n')
-for (leave.out.MARGIN in 1:length(dims)) {
-  MARGIN <- 1:length(dims)
-  MARGIN <- MARGIN[-leave.out.MARGIN]
+    # Carry out the test
+    ret <- array.apply(
+      X, MARGIN, cores, FUN, na.rm = T)
+    ret.serial <- apply(
+      X, MARGIN, FUN, na.rm = T)
 
-  # Carry out the test
-  ret <- array.apply(
-    X, MARGIN, cores, FUN, na.rm = T, verbose = F)
-  ret.serial <- apply(
-    X, MARGIN, FUN, na.rm = T, verbose = F)
-
-  # Check results
-  stopifnot(identical(ret.serial, ret))
+    # Check results
+    if (length(MARGIN) == 1) {
+      stopifnot(identical(as.vector(ret.serial), as.vector(ret)))
+    } else {
+      stopifnot(identical(ret.serial, ret))
+    }
+  }
 }
 
 succeed('Tests passed for the function array.apply!')
