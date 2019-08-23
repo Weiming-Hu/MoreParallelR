@@ -7,7 +7,7 @@
 parallel.apply(X, MARGIN, cores, FUN, ..., verbose = F)
 }
 \arguments{
-\item{X}{An array.}
+\item{X}{An array, including a matrix.}
 
 \item{MARGIN}{A vector giving the subscripts which the
 function will be applied over.}
@@ -42,8 +42,9 @@ This function is different from
 \href{https://www.rdocumentation.org/packages/plyr/versions/1.8.4/topics/laply}{plyr::laply}
 that it returns an array with the specified \code{MARGIN} as
 dimensions.
-
-\strong{Note}: Please be aware of whether your \code{FUN} behaves
+}
+\note{
+Please be aware of whether your \code{FUN} behaves
 differently for a vector, a matrix, or an array. If you
 are applying the function on a matrix or an array, \code{lapply}
 and \code{plyr:laply} will coerce the high-dimensional object

@@ -123,7 +123,7 @@ function to achieve the rest of the parallelization.</p>
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
       <th>X</th>
-      <td><p>An array.</p></td>
+      <td><p>An array, including a matrix.</p></td>
     </tr>
     <tr>
       <th>MARGIN</th>
@@ -161,7 +161,10 @@ casual conversation.</p>
 <a href='https://www.rdocumentation.org/packages/plyr/versions/1.8.4/topics/laply'>plyr::laply</a>
 that it returns an array with the specified <code>MARGIN</code> as
 dimensions.</p>
-<p><strong>Note</strong>: Please be aware of whether your <code>FUN</code> behaves
+    
+    <h2 class="hasAnchor" id="note"><a class="anchor" href="#note"></a>Note</h2>
+
+    <p>Please be aware of whether your <code>FUN</code> behaves
 differently for a vector, a matrix, or an array. If you
 are applying the function on a matrix or an array, <code>lapply</code>
 and <code>plyr:laply</code> will coerce the high-dimensional object
@@ -225,6 +228,8 @@ from this function and <code>apply</code>.</p>
       <li><a href="#value">Value</a></li>
 
       <li><a href="#details">Details</a></li>
+
+      <li><a href="#note">Note</a></li>
       
       <li><a href="#examples">Examples</a></li>
     </ul>

@@ -35,7 +35,8 @@
 #' that it returns an array with the specified `MARGIN` as
 #' dimensions.
 #'
-#' **Note**: Please be aware of whether your `FUN` behaves
+#' @note
+#' Please be aware of whether your `FUN` behaves
 #' differently for a vector, a matrix, or an array. If you
 #' are applying the function on a matrix or an array, `lapply`
 #' and `plyr:laply` will coerce the high-dimensional object
@@ -43,7 +44,7 @@
 #' to feed the `FUN`. This might cause different results
 #' from this function and `apply`.
 #'
-#' @param X An array.
+#' @param X An array, including a matrix.
 #' @param MARGIN A vector giving the subscripts which the
 #' function will be applied over.
 #' @param FUN The function to be applied.
@@ -100,7 +101,7 @@
 parallel.apply <- function(X, MARGIN, cores, FUN, ..., verbose = F) {
 
   # Sanity checks
-  stopifnot(is.array(X))
+  stopifnot(is.array(X) || is.matrix(X))
   stopifnot(max(MARGIN) <= length(dim(X)))
 
   require(parallel)
