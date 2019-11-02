@@ -9,10 +9,13 @@ MoreParallelR provides solutions for parallelization in R.
 
 ## Features
 
-🎯Minimal codes changes from `apply` function family
-⏰Preliminary profiling shows its competence
+🎯 Minimal codes changes from `apply` function family
 
-![Preliminary profiling]()
+⏰ Preliminary profiling shows its competence
+
+![Preliminary profiling](https://github.com/Weiming-Hu/MoreParallelR/blob/master/assets/simple-profiling.png)
+
+*The above profiling was carried out on Mac Air using [this script](https://github.com/Weiming-Hu/MoreParallelR/blob/master/assets/simple-profiling.R).*
 
 ## Installation
 
