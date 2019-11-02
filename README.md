@@ -11,7 +11,7 @@ MoreParallelR provides solutions for parallelization in R.
 
 🎯 Minimal code changes from `apply` function family
 
-⏰ Preliminary profiling shows its competence
+⏰ [Preliminary profiling](https://raw.githubusercontent.com/Weiming-Hu/MoreParallelR/master/assets/simple-profiling.png) shows its competence
 
 ![Preliminary profiling](https://raw.githubusercontent.com/Weiming-Hu/MoreParallelR/master/assets/simple-profiling.png)
 
