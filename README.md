@@ -7,6 +7,13 @@
 
 MoreParallelR provides solutions for parallelization in R.
 
+## Features
+
+🎯Minimal codes changes from `apply` function family
+⏰Preliminary profiling shows its competence
+
+![Preliminary profiling]()
+
 ## Installation
 
 There is an `install_github` function to install R packages hosted on GitHub. Please use the following command to install the `MoreParallelR` package.
