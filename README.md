@@ -9,7 +9,7 @@ MoreParallelR provides solutions for parallelization in R.
 
 ## Features
 
-🎯 Minimal codes changes from `apply` function family
+🎯 Minimal code changes from `apply` function family
 
 ⏰ Preliminary profiling shows its competence
 
