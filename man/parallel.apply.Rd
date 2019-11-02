@@ -77,6 +77,7 @@ profvis({
 
     # A costly function
     ret <- v \%>\%
+      as.vector() \%>\%
       sin() \%>\%
       cos() \%>\%
       var()

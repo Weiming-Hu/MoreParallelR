@@ -199,6 +199,7 @@ from this function and <code>apply</code>.</p>
 
     <span class='co'># A costly function</span>
     <span class='no'>ret</span> <span class='kw'>&lt;-</span> <span class='no'>v</span> <span class='kw'>%&gt;%</span>
+      <span class='fu'><a href='https://rdrr.io/r/base/vector.html'>as.vector</a></span>() <span class='kw'>%&gt;%</span>
       <span class='fu'><a href='https://rdrr.io/r/base/Trig.html'>sin</a></span>() <span class='kw'>%&gt;%</span>
       <span class='fu'><a href='https://rdrr.io/r/base/Trig.html'>cos</a></span>() <span class='kw'>%&gt;%</span>
       <span class='fu'><a href='https://rdrr.io/r/stats/cor.html'>var</a></span>()
