@@ -13,7 +13,7 @@
   version <- read.dcf(file.path(lib, pkg, "DESCRIPTION"), "Version")
   message <- paste0("MoreParallelR\nversion: ", version,
                     "\nAuthor: Weiming Hu",
-                    "\nWebsite: https://github.com/Weiming-Hu/MoreParallelR")
+                    "\nWebsite: https://weiming-hu.github.io/MoreParallelR")
   packageStartupMessage(message)
   invisible()
 }
