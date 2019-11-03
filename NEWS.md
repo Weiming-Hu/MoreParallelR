@@ -1,6 +1,7 @@
 # MoreParallelR 0.2.1
 
 - Added garbage collection in `index.apply`
+- Added source url on documentation website
 
 # MoreParallelR 0.2.0
 
