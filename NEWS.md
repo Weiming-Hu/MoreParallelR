@@ -2,6 +2,7 @@
 
 - Added garbage collection in `index.apply`
 - Added source url on documentation website
+_ Added the non-collapsing return value functionality in `index.apply`
 
 # MoreParallelR 0.2.0
 

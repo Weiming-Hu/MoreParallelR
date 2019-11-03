@@ -206,13 +206,44 @@ index.apply <- function(
 
   if (verbose) cat('Organizing values back to an array ...\n')
 
-  X.new <- array(NA, dim = dim(X[[1]])[MARGIN])
-
-  for (i.row in 1:nrow(grid.table)) {
-    index <- grid.table[i.row, , drop = F]
-    X.new[index] <- ret[[i.row]]
+  # Make sure that all returned memebers have the same length
+  if (length(unique(lapply(ret, length))) != 1) {
+    stop("Some of the returned values have different length!
+         You might want to use debug = T and examine your FUN.")
   }
-  
+
+  # Check whether the returned values are single values
+  # or vectors or arrays/matrices
+  #
+  if (length(ret[[1]]) == 1) {
+    collapse.dims <- T
+
+    if (verbose) {
+    cat('Return values are single-length.\n')
+    }
+
+  } else {
+    collapse.dims <- F
+
+    if (is.null(dim(ret[[1]]))) {
+      new.dims <- length(ret[[1]])
+    } else {
+      new.dims <- dim(ret[[1]])
+    }
+
+    if (verbose) {
+      cat('Return values are non-single-length.\n')
+    }
+  }
+
+  if (collapse.dims) {
+    X.new <- array(unlist(ret), dim = dim(X[[1]])[MARGIN])
+  } else {
+    X.new <- array(unlist(ret), dim = c(new.dims, dim(X[[1]])[MARGIN]))
+    perm <- c((1:length(dim(X[[1]])[MARGIN])) + length(new.dims), 1:length(new.dims))
+    X.new <- aperm(X.new, perm)
+  }
+
   # Housekeeping
   rm(i.row, i.X, index, grid.table, ret, X.dist)
   garbage <- gc(reset = T)
