@@ -1,3 +1,7 @@
+# MoreParallelR 0.2.1
+
+- Added garbage collection in `index.apply`
+
 # MoreParallelR 0.2.0
 
 - Added a new function `index.apply`
