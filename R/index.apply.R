@@ -212,6 +212,10 @@ index.apply <- function(
     index <- grid.table[i.row, , drop = F]
     X.new[index] <- ret[[i.row]]
   }
+  
+  # Housekeeping
+  rm(i.row, i.X, index, grid.table, ret, X.dist)
+  garbage <- gc(reset = T)
 
   if (verbose) cat('Done (index.apply)!\n')
   return(X.new)
