@@ -1,7 +1,7 @@
 Package: MoreParallelR
 Type: Package
 Title: MoreParallelR provides solutions for parallelization in R.
-Version: 0.2.0
+Version: 0.2.1
 Author: Weiming Hu
 Maintainer: Weiming Hu <weiming.pennstate@outlook.com>
 Description: MoreParallelR aims to implement some common
