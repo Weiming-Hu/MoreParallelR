@@ -4,7 +4,8 @@
 \alias{parallel.apply}
 \title{MoreParallelR::parallel.apply}
 \usage{
-parallel.apply(X, MARGIN, cores, FUN, ..., verbose = F)
+parallel.apply(X, MARGIN, FUN, ..., verbose = F, cores = 1,
+  progress.bar = F)
 }
 \arguments{
 \item{X}{An array, including a matrix.}
@@ -17,6 +18,11 @@ function will be applied over.}
 \item{...}{Optional arguments to \code{FUN}.}
 
 \item{verbose}{Whether to print progress information.}
+
+\item{cores}{The number of cores for parallelization.}
+
+\item{progress.bar}{Whether to show a progress bar.
+This requires the package \code{pbmcapply}.}
 }
 \value{
 An array.

@@ -50,6 +50,9 @@
 #' @param FUN The function to be applied.
 #' @param ... Optional arguments to `FUN`.
 #' @param verbose Whether to print progress information.
+#' @param cores The number of cores for parallelization.
+#' @param progress.bar Whether to show a progress bar.
+#' This requires the package `pbmcapply`.
 #'
 #' @return An array.
 #'
@@ -99,13 +102,20 @@
 #'
 #' @md
 #' @export
-parallel.apply <- function(X, MARGIN, cores, FUN, ..., verbose = F) {
+parallel.apply <- function(
+  X, MARGIN, FUN, ...,
+  verbose = F, cores = 1, progress.bar = F) {
 
   # Sanity checks
+  FUN <- match.fun(FUN)
   stopifnot(is.array(X) || is.matrix(X))
   stopifnot(max(MARGIN) <= length(dim(X)))
 
-  require(parallel)
+  if (progress.bar) {
+    require(pbmcapply)
+  } else {
+    require(parallel)
+  }
 
   # Convert the high-dimensional array to a list of low-dimensional arrays
   if (verbose) cat('Splitting the array into a list of arrays ...\n')
@@ -131,7 +141,15 @@ parallel.apply <- function(X, MARGIN, cores, FUN, ..., verbose = F) {
   }
 
   # Parallel processing the list of array
-  ret <- mclapply(X = X.list, FUN = FUN, ..., mc.cores = cores)
+  if (verbose) cat('Processing ...\n')
+
+  if (progress.bar) {
+    ret <- pbmcapply::pbmclapply(
+      X = X.list, FUN = FUN, ..., mc.cores = cores)
+  } else {
+    ret <- parallel::mclapply(
+      X = X.list, FUN = FUN, ..., mc.cores = cores)
+  }
 
   if (verbose) cat('Organizing values back to an array ...\n')
   X.new <- array(NA, dim = dim(X)[MARGIN])
