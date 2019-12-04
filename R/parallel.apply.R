@@ -112,9 +112,13 @@ parallel.apply <- function(
   stopifnot(max(MARGIN) <= length(dim(X)))
 
   if (progress.bar) {
-    require(pbmcapply)
+    if (!requireNamespace('pbmcapply', quietly = T)) {
+      stop(paste('Please install pbmcapply'))
+    }
   } else {
-    require(parallel)
+    if (!requireNamespace('parallel', quietly = T)) {
+      stop(paste('Please install parallel'))
+    }
   }
 
   # Convert the high-dimensional array to a list of low-dimensional arrays

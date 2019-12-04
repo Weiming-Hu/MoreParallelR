@@ -13,9 +13,8 @@ Description: MoreParallelR aims to implement some common
     solutions for parallelization in R.
 License: MIT + file LICENSE
 Encoding: UTF-8
-Depends:
-    parallel,
 Suggests:
+    parallel,
     testthat,
     magrittr,
     pbmcapply,

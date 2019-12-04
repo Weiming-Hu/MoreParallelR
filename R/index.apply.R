@@ -140,9 +140,13 @@ index.apply <- function(
 
   # Sanity checks
   if (progress.bar) {
-    require(pbmcapply)
+    if (!requireNamespace('pbmcapply', quietly = T)) {
+      stop(paste('Please install pbmcapply'))
+    }
   } else {
-    require(parallel)
+    if (!requireNamespace('parallel', quietly = T)) {
+      stop(paste('Please install parallel'))
+    }
   }
 
   # Input X should be a list
